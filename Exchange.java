@@ -5,15 +5,16 @@ class Exchange{
         int dime=0;
         int nickle=0;
         int penny=0;
-        double input=0;
+        int input=0;
+        
         int total_coin=0;
         //Prase input
         if(args.length>0)
         {
             try
             {
-                input=Double.parseDouble(args[0])*100;
-              
+                input=(int)(Float.parseFloat(args[0])*100);
+
             }
             catch(NumberFormatException e)
             {
@@ -22,8 +23,9 @@ class Exchange{
             }           
 
         }
+        System.out.println(input);
         //Perform convertions.
-        while(input>0)
+        while(input>=1)
         {
             if(input>=25)
             {
@@ -34,6 +36,7 @@ class Exchange{
             {
                 dime++;
                 input-=10;
+                
                
             }
             else if(input>=5)
@@ -48,6 +51,7 @@ class Exchange{
             }
             total_coin++;
         }
+    
         //Printing output
         System.out.println("The minimum number of coin of this exhange is "+total_coin);
         System.out.println("Quater: "+quarter+" Dime: "+dime+" Nickle: "+nickle+" Penny: "+penny);
