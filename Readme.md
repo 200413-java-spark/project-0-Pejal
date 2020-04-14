@@ -9,14 +9,16 @@ README
 ## Expected input:
 $java Exchange 1
 ## Expected output:
->The minimum number of coin of this exhange is 4
- Quater: 4 Dime: 0 Nickle: 0 Penny: 0
+>The minimum number of coin of this exhange is 4 
+
+>Quater: 4 Dime: 0 Nickle: 0 Penny: 0
 
 ## Expected input:
 $java Exchange 1.22
 ## Expected output:
 >The minimum number of coin of this exhange is 8
- Quater: 4 Dime: 2 Nickle: 0 Penny: 2
+
+>Quater: 4 Dime: 2 Nickle: 0 Penny: 2
 
 ## Expected input:
 $java Exchange food
