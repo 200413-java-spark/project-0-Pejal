@@ -24,7 +24,7 @@ class Exchange{
             }           
 
         }
-        System.out.println(input);
+        
         //Perform convertions.
         while(input>=1)
         {
