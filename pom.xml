@@ -4,6 +4,12 @@
     <artifactId>exchange</artifactId>
     <version>0.1.0</version>
 
+    <properties>
+        <maven.compiler.source> 1.8</maven.compiler.source>
+        <maven.compiler.target> 1.8</maven.compiler.target>
+        <exec.mainClass>com.github.pejalrath.Exchange</exec.mainClass>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
