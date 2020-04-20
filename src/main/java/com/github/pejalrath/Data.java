@@ -9,20 +9,20 @@ public class Data {
         private int total_coin=0;
         //Constructor 
         
-        public Data(String[] args)
+        public Data(String args)
         {
-            if(args.length>0)
+            if(args!="")
             {
                 try
                 {
-                    this.input=(int)(Float.parseFloat(args[0])*100);
+                    this.input=(int)(Float.parseFloat(args)*100);
                     convertToCoin();
 
                 }
                 catch(NumberFormatException e)
                 {
                     System.out.println("Please provide number as input!");
-                    System.exit(1);
+                    //System.exit(1);
                 }           
 
             }
@@ -59,7 +59,7 @@ public class Data {
         public void output()
         {
             System.out.println("The minimum number of coin of this exhange is "+this.total_coin);
-            System.out.println("Quater: "+this.quarter+" Dime: "+this.dime+" Nickle: "+this.nickle+" Penny: "+this.penny);
+            System.out.println("Quater: "+this.quarter+" \nDime: "+this.dime+" \nNickle: "+this.nickle+" \nPenny: "+this.penny+"\n");
         }
 
 }
