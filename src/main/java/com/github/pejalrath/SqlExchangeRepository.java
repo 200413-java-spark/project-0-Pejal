@@ -20,7 +20,7 @@ public class SqlExchangeRepository {
     }
     public void insertToDB(List<Data> data)
     {
-        String sql_command="insert into data (input,total_coin,Quarter,Dime,Nickle,Penny) values(?,?,?,?,?,?)";
+        String sql_command="insert into data(input,total_coin,Quarter,Dime,Nickle,Penny) values(?,?,?,?,?,?)";
         try (Connection connection=this.dataSource.getConnection(); 
                 PreparedStatement statement=connection.prepareStatement(sql_command);)
         {
@@ -32,6 +32,7 @@ public class SqlExchangeRepository {
                 statement.setInt(4, d.getDime());
                 statement.setInt(5, d.getNickle());
                 statement.setInt(6, d.getPenny());
+                statement.addBatch();
             }
             statement.executeBatch();
 
