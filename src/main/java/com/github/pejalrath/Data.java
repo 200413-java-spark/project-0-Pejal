@@ -8,8 +8,9 @@ public class Data {
         private int input=0;
         private int total_coin=0;
         //Constructor 
+        public Data(){}
         
-        public Data(String args)
+        public Data(String args) 
         {
             if(args!="")
             {
@@ -22,7 +23,7 @@ public class Data {
                 catch(NumberFormatException e)
                 {
                     System.out.println("Please provide number as input!");
-                    //System.exit(1);
+                    System.exit(1);
                 }           
 
             }
@@ -56,10 +57,69 @@ public class Data {
             }
 
         }
+        //Getter
+        public double getInput()
+        {
+            return this.input/100.0;
+            
+        }
+        public int getTotal()
+        {
+            return this.total_coin;
+        }
+        public int getQuarter()
+        {
+            return this.quarter;
+        }
+        public int getDime()
+        {
+            return this.dime;
+        }
+        public int getNickle()
+        {
+            return this.nickle;
+        }
+        public int getPenny()
+        {
+            return this.penny;
+        }
+        //Setter
+        public void setInput(double num)
+        {
+            this.input=(int)(num*100);
+            
+            
+        }
+        public void setTotal(int num)
+        {
+            this.total_coin=num;
+        }
+        public void setQuarter(int num)
+        {
+            this.quarter=num;
+        }
+        public void setDime(int num)
+        {
+            this.dime=num;
+        }
+        public void setNickle(int num)
+        {
+            this.nickle=num;
+        }
+        public void setPenny(int num)
+        {
+            this.penny=num;
+        }
+        //
         public void output()
         {
             System.out.println("The minimum number of coin of this exhange is "+this.total_coin);
             System.out.println("Quater: "+this.quarter+" \nDime: "+this.dime+" \nNickle: "+this.nickle+" \nPenny: "+this.penny+"\n");
+        }
+        @Override
+        public String toString()
+        {
+            return (input/100)+" "+total_coin+" "+ quarter+" "+dime+" "+nickle+" "+penny+"\n";
         }
 
 }

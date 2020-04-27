@@ -4,11 +4,45 @@
     <artifactId>exchange</artifactId>
     <version>0.1.0</version>
 
+    <name>exhcange</name>
+
     <properties>
         <maven.compiler.source> 1.8</maven.compiler.source>
         <maven.compiler.target> 1.8</maven.compiler.target>
         <exec.mainClass>com.github.pejalrath.Exchange</exec.mainClass>
     </properties>
+
+    <build>
+		<plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${name}-${version}</finalName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+
+
+
+
 
     <dependencies>
         <dependency>
@@ -16,6 +50,12 @@
             <artifactId>junit</artifactId>
             <version>4.13</version>
         </dependency>
+        <dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.12</version>
+		</dependency>
+
     </dependencies>
 
 </project>

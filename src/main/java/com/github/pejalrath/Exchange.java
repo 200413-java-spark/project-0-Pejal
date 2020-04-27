@@ -17,6 +17,7 @@ class Exchange{
         int mode=0;
         Scanner sc=new Scanner(System.in);
         do{
+            try{
             banner();
             mode=sc.nextInt();
             switch (mode) {
@@ -24,7 +25,7 @@ class Exchange{
                     mode_1();
                     break;
                 case 2:
-                    //mode_2(); //not yet implement
+                    mode_2(); 
                     break;
                 case 3:
                     break;
@@ -34,38 +35,123 @@ class Exchange{
                     break;
             }
 
+            }
+            catch (Exception e)
+            {
+                System.out.println("Invalid input! Please enter '1': User Input; '2': File Input; or '3': Quit");
+                System.exit(1);
+                
+            }
+
 
         }while(mode!=3);
 
     }
-    static private void mode_1()//User input
-    {
-        Scanner sc=new Scanner(System.in);
-            
-        System.out.println("***User Input Mode***");
-        System.out.print("Please enter the number of bill for exchange: ");
-        
-        String args=sc.nextLine();
-    
+    static private Data search (String args) //Search for local history
+    {   
         if(history.containsKey(args))
         {
-            (history.get(args)).output();
+            return history.get(args);
         }
-        else{
+        else
+        {
             Data user_input=new Data(args);
             history.put(args,user_input);
-            (history.get(args)).output();
+            return history.get(args);
         }
-        
-    
     }
-    static private void mode_2()//File input
+    static private void mode_1()//User input
+    {
+        Scanner sc=new Scanner(System.in);    
+        System.out.println("***User Input Mode***");
+        System.out.print("Please enter the number of bill for exchange: ");
+        String args=sc.nextLine();
+        Data result=search(args);
+        result.output();
+    }
+    static private void mode_2()  //File input
     {
         System.out.println("***File Input Mode***");
         System.out.print("Please enter names of input file and [Option] output file: ");
-        
+        List<Data> datas=read();//
+
+            //Insert into databbase sql
+        SqlDataSource dataSource = SqlDataSource.getInstance();
+        SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
+        dRep.insertToDB(datas);
+
+        List<Data> sql_data=dRep.readFromDB();
+        for(Data d:sql_data)
+        {
+            System.out.println(d);
+        }
+
 
     }
+    private static void write(String fn,String data)//Write to file
+    {
+        File file_name=new File(fn);
+        FileWriter file_w=null;
+        BufferedWriter buff_w=null;
+
+        try{
+            file_w=new FileWriter(file_name,true);
+            buff_w=new BufferedWriter(file_w);
+            buff_w.write(data);
+        }
+        catch(IOException e)
+        {
+            System.out.println("IOException!!!");
+        }
+        finally{
+            try{
+                buff_w.close();
+                file_w.close();
+            }
+            catch(IOException e)
+            {
+                System.out.println("IOExecption!!");
+            }
+        }
+
+
+    }
+    private static List<Data> read()//read from file
+    {
+        List<Data> result=new ArrayList<>();//
+
+        BufferedReader reader;
+        Scanner sc=new Scanner(System.in);
+        String input_filename[]=(sc.nextLine()).split(" ");
+        try{
+            reader=new BufferedReader(new FileReader(input_filename[0]));
+            String line=reader.readLine();
+            Data temp;
+            while(line!=null)
+            {  
+                temp=search(line);
+                if(input_filename.length==2)
+                {
+                    write(input_filename[1], temp.toString());
+                }
+                else if(input_filename.length==1)
+                {
+                    System.out.println(temp);
+                }
+                result.add(temp);//
+                line=reader.readLine();
+            }
+            reader.close();
+            
+        }
+        catch(IOException e)
+        {
+            System.out.println(input_filename[0]+ " No such file exit!");
+            
+        }
+        return result;
+    }
+   
      
     static private void banner()
     {
@@ -78,9 +164,6 @@ class Exchange{
 
     public static void main(String[] args)
     {
-        // Data user_input=new Data(args);
-        // history.put(args[0],user_input);
-        // (history.get(args[0])).output();
         user_promt();
 
     }
