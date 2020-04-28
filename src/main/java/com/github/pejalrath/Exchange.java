@@ -79,12 +79,12 @@ class Exchange{
         SqlDataSource dataSource = SqlDataSource.getInstance();
         SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
         dRep.insertToDB(datas);
-
-        // List<Data> sql_data=dRep.readFromDB();
-        // for(Data d:sql_data)
-        // {
-        //     System.out.println(d);
-        // }
+            //Read from database
+        List<Data> sql_data=dRep.readFromDB();
+        for(Data d:sql_data)
+        {
+            System.out.println(d);
+        }
 
 
     }

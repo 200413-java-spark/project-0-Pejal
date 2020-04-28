@@ -13,9 +13,9 @@ public class SqlDataSource {
 
     private SqlDataSource()
     {
-        url= System.getProperty("database.url","jdbc:postgresql://localhost:5432/opsdb");
-        user_name= System.getProperty("database.username","opsdb");
-        password=System.getProperty("database.password","opsdb");
+        url= System.getProperty("database.url","jdbc:postgresql://localhost:5432/exchangedb");
+        user_name= System.getProperty("database.username","exchangedb");
+        password=System.getProperty("database.password","exchangedb");
 
     }
     public static SqlDataSource getInstance()
