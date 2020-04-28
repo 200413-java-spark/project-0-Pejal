@@ -28,8 +28,10 @@ public class InterfaceAPI {
                     mode_2(); 
                     break;
                 case 3:
+                    mode_3();
                     break;
-                    
+                case 4:
+                    mode_4();
                 default:
                     System.out.println("Invalid input! Please enter '1': User Input; '2': File Input; or '3': Quit");
                     break;
@@ -40,7 +42,7 @@ public class InterfaceAPI {
                 System.out.println("Invalid input! Please enter '1': User Input; '2': File Input; or '3': Quit");
                 System.exit(1);
             }
-        }while(mode!=3);
+        }while(mode!=5);
 
     }
 
@@ -49,14 +51,16 @@ public class InterfaceAPI {
         System.out.println("*****Exchange System*****");
         System.out.println("Please select mode: ");
         System.out.println("1) User input");
-        System.out.println("2) File input");
-        System.out.println("3) Quit");
+        System.out.println("2) File input to [console||output file]");
+        System.out.println("3) File input to [console||output file] and Store to SQL Database");
+        System.out.println("4) Read all data store inside SQL Database");
+        System.out.println("5) Quit");
     }
 
     static private void mode_1()//User input
     {
         Scanner sc=new Scanner(System.in);    
-        System.out.println("***User Input Mode***");
+        System.out.println("*** Mode #1 ***");
         System.out.print("Please enter the number of bill for exchange: ");
         String args=sc.nextLine();
         Data result=search(args);
@@ -64,23 +68,24 @@ public class InterfaceAPI {
       
     }
 
-    static private void mode_2()  //File input
+    static private void mode_2() // Take file input and write it to [consule||output file]
     {
-        System.out.println("***File Input Mode***");
+        System.out.println("*** Mode #2 ***");
         System.out.print("Please enter names of input file and [Option] output file: ");
         List<Data> datas=read_write();
-        //Another mode
-        //Insert into databbase sql
+      
+    }
+    static private void mode_3() //Take file input and write it to [consule||output file] and wrtie to Database
+    {
+        System.out.println("*** Mode #3 ***");
+        System.out.print("Please enter names of input file and [Option] output file: ");
+        List<Data> datas=read_write();
         writeDB(datas);
-        // SqlDataSource dataSource = SqlDataSource.getInstance();
-        // SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
-        // dRep.insertToDB(datas);
-            //Read from database
-        // List<Data> sql_data=dRep.readFromDB();
-        // for(Data d:sql_data)
-        // {
-        //     System.out.println(d);
-        // }
+
+    }
+    static private void mode_4() //Read all data from data base
+    {
+        System.out.println("*** Mode #4 ***");
         readDB();
     }
     static private void writeDB(List<Data> datas)
