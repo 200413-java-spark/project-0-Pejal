@@ -71,9 +71,10 @@ public class InterfaceAPI {
         List<Data> datas=read_write();
         //Another mode
         //Insert into databbase sql
-        SqlDataSource dataSource = SqlDataSource.getInstance();
-        SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
-        dRep.insertToDB(datas);
+        writeDB(datas);
+        // SqlDataSource dataSource = SqlDataSource.getInstance();
+        // SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
+        // dRep.insertToDB(datas);
             //Read from database
         // List<Data> sql_data=dRep.readFromDB();
         // for(Data d:sql_data)
@@ -81,6 +82,12 @@ public class InterfaceAPI {
         //     System.out.println(d);
         // }
         readDB();
+    }
+    static private void writeDB(List<Data> datas)
+    {
+        SqlDataSource dataSource = SqlDataSource.getInstance();
+        SqlExchangeRepository dRep=new SqlExchangeRepository(dataSource);
+        dRep.insertToDB(datas);
     }
     static private void readDB()
     {
