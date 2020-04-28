@@ -32,6 +32,7 @@ public class InterfaceAPI {
                     break;
                 case 4:
                     mode_4();
+                    break;
                 default:
                     System.out.println("Invalid input! Please enter '1': User Input; '2': File Input; or '3': Quit");
                     break;
