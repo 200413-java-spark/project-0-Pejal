@@ -1,5 +1,5 @@
 create table data(
-    input decimal,
+    input decimal PRIMARY KEY,
     total_coin integer,
     Quarter integer,
     Dime integer,
